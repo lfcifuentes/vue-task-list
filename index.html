@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>First page</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+	<div class="container" id="main">
+		<div class="row">
+			<div class="col-6">
+				<h1 v-if="lists.length > 0">Enter another task:</h1>
+				<h1 v-else="list">Enter your first task:</h1>
+				<input type="text" class="form-control" v-model="newKeep" v-on:keyup.enter="addKeep">
+			</div>
+			<div class="col-6">
+				<div v-if="lists.length > 0">
+					<h1>Task list:</h1>
+					<ul class="list-group">
+					  	<li class="list-group-item active">Task list</li>
+					  	<li class="list-group-item" 
+					  	v-for="item in lists" 
+					  	v-bind:class="item.completed == true ? 'bg-secondary text-light': '' "
+					  	v-on:click="item.completed = !item.completed"> 
+							{{ item.keep }}
+					  	</li>
+					</ul>
+				</div>
+				<div v-else="lists">
+					<div class="alert alert-info mt-5">
+						You have not entered tasks.
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row jumbotron p-0 mt-4">
+			<div class="col-12 text-left">
+				<hr>
+				<pre class="w-100"><!-- 
+				-->Object data:<!--
+				-->{{ $data | json }}
+				</pre>
+			</div>
+		</div>
+	</div>
+	<script src="app/js/vue.js"></script>
+	<script src="app/js/app.js"></script>
+
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>
